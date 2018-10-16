@@ -14,20 +14,20 @@
                 {!! Form::text('name',null,['class'=>'form-control'])!!}
         </div>
         <div class="form-group">
-                {!! Form::label('Email','Email:')!!}
+                {!! Form::label('email','Email:')!!}
                 {!! Form::email('email',null,['class'=>'form-control'])!!}
         </div>
         <div class="form-group">
-                {!! Form::label('status','Status:')!!}
+                {!! Form::label('is_active','Status:')!!}
                 {!! Form::select('is_active',array(1=>'Active', 0=>'Inactive'),0,['class'=>'form-control'])!!}
         </div>
         <div class="form-group">
-                {!! Form::label('role','Role:')!!}
+                {!! Form::label('role_id','Role:')!!}
                 {!! Form::select('role_id',[''=>'Select Role']+$roles,null,['class'=>'form-control'])!!}
         </div>
         <div class="form-group">
             {!! Form::label('file','Image:')!!}
-            {!! Form::file('file',[''=>'Select Role']+$roles,null,['class'=>'form-control'])!!}
+            {!! Form::file('file',null,['class'=>'form-control form-control-file'])!!}
         </div>
 
 

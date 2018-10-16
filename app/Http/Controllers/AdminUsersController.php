@@ -35,6 +35,7 @@ class AdminUsersController extends Controller
         //this is for fetching the roles and then populating the role select form field..
         // we didnt use all because all will bring collection and we want an array
         $roles = Role::lists('name','id')->all();
+
         return view('admin.user.create',compact('roles'));
     }
 
@@ -46,9 +47,13 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest$request)
     {
-        //
+        //to store the user data all we have to do is use the User model
 
-        return $request->all();
+       // return $request->all();
+        User::create($request->all());
+
+
+        return redirect('admin/users');
 
 
     }
