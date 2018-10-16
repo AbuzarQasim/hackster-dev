@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersRequest;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUsersController extends Controller
 {
@@ -16,8 +20,8 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-
-        return view('admin.user.index');
+        $users  = User::all();
+        return view('admin.user.index',compact('users'));
     }
 
     /**
@@ -28,7 +32,10 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
-        return view('admin.user.create');
+        //this is for fetching the roles and then populating the role select form field..
+        // we didnt use all because all will bring collection and we want an array
+        $roles = Role::lists('name','id')->all();
+        return view('admin.user.create',compact('roles'));
     }
 
     /**
@@ -37,9 +44,13 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest$request)
     {
         //
+
+        return $request->all();
+
+
     }
 
     /**
