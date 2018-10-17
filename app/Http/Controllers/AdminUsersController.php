@@ -95,7 +95,10 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.user.edit');
+
+        $user = User::findOrFail($id);
+        $roles = Role::lists('name','id')->all();
+        return view('admin.user.edit',compact('user','roles'));
     }
 
     /**
@@ -105,9 +108,54 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersRequest $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+
+        // use the below code if you have allowed the user to skip the password field for updation  by creating a new edit request
+        //this will assign all the fields except password if it is not set in the edit page
+        // REMOVE THE bcrypt password statment from end ...if using this method
+//        if(trim($request->password) =='')
+//        {
+//            $input=$request->except('password');
+//        }else
+//        {
+//            $input = $request->all();
+      //  $input['password']=bcrypt($request->password);
+//        }
+
+        $input = $request->all();
+
+        if($file = $request->file('photo_id'))
+        {
+
+
+
+            $name= time().$file->getClientOriginalName();
+            $file->move('images',$name);
+
+            if($user->photo_id =="" || $user->photo_id ==null )
+            {
+                $photo = Photo::create(['path'=>$name]);
+
+                $input['photo_id'] = $photo->id;
+            }
+            else{
+
+                $photo = Photo::find($user->photo_id);
+                $photo->path= $name;
+                $photo->save();
+
+                $input['photo_id'] = $photo->id;
+            }
+
+        }
+        $input['password']=bcrypt($request->password);
+
+           $user->update($input);
+        return redirect('admin/users');
+
     }
 
     /**
