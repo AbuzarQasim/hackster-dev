@@ -40,6 +40,7 @@
           <td>{{$post->body}}</td>
             <td>{{$post->created_at->diffForHumans()}}</td>
             <td>{{$post->updated_at->diffForHumans()}}</td>
+            <td><a class="btn btn-primary" href="{{route('admin.posts.edit',$post->id)}}" role="button">Edit</a></td>
         </tr>
              @endforeach
         @endif
