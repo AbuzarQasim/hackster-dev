@@ -31,5 +31,7 @@ Route::group(['middleware'=>'admin'],function ()
     {
         return view('admin.index');
     });
+
+    Route::resource('admin/categories','AdminCategoryController');
 });
 
