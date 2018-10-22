@@ -1,4 +1,7 @@
 #admin-page {
   padding-top: unset; }
 
+.comment-reply {
+  display: none; }
+
 /*# sourceMappingURL=app.css.map */

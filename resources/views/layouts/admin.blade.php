@@ -161,7 +161,8 @@
                             </li>
 
                             <li>
-                                <a href="{{route('admin.categories.index')}}">Edit Category</a>
+
+                                --}}
                             </li>
 
                         </ul>

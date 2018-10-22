@@ -19,6 +19,7 @@ class CreateCommentRepliesTable extends Migration
             $table->string('author');
             $table->string('email');
             $table->string('body');
+            $table->string('photo_path');
             $table->timestamps();
 
 

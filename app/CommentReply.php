@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class CommentReply extends Model
 {
@@ -16,6 +17,7 @@ class CommentReply extends Model
         'email',
         'body',
         'is_active',
+        'photo',
 
     ];
 

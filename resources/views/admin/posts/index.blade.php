@@ -21,8 +21,11 @@
 
             <th scope="col">Title</th>
             <th scope="col">Content</th>
+
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
+             <th scope="col">Post</th>
+          <th scope="col">Comments</th>
         </tr>
       </thead>
       <tbody>
@@ -38,8 +41,11 @@
 
           <td>{{$post->title}}</td>
           <td>{{$post->body}}</td>
+
             <td>{{$post->created_at->diffForHumans()}}</td>
             <td>{{$post->updated_at->diffForHumans()}}</td>
+          <td><a href="{{route('home.posts',$post->slug)}}"> View Post</a></td>
+          <td><a href="{{route('admin.comments.show',$post->id )}}"> View Comments</a></td>
             <td><a class="btn btn-primary" href="{{route('admin.posts.edit',$post->id)}}" role="button">Edit</a></td>
         </tr>
              @endforeach

@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class AdminPostsController extends Controller
 {
@@ -164,14 +166,18 @@ class AdminPostsController extends Controller
 
 
 
-    public function post($id)
+    public function post($slug)
     {
 
 
-        $post = Post::findOrFail($id);
+        $post = Post::findBySlugOrFail($slug);
+        $comments = $post->comments()->whereIsActive(1)->get();
+
+
+
 
        // return $post;
-          return view('post',compact('post'));
+          return view('post',compact('post','comments'));
 
 
 
